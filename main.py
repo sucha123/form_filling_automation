@@ -126,34 +126,41 @@ def getStudentData(driver):
     time.sleep(4)
     result = {}
     for key in page1_keys:
-        input_element = driver.find_element_by_name(d[key])
+        #input_element = driver.find_element_by_name(d[key])
+        input_element = driver.find_element("name",d[key])
         input_value = input_element.get_attribute("value")
         result[key] = input_value
-    a_element = driver.find_element_by_xpath(
-        "//a[span[text()='Address Details']]")
+    #a_element = driver.find_element_by_xpath(
+     #   "//a[span[text()='Address Details']]")
+    a_element = driver.find_element("xpath","//a[span[text()='Address Details']]")
     a_element.click()
     time.sleep(3)
     for key in page2_keys:
-        input_element = driver.find_element_by_name(d[key])
+        #input_element = driver.find_element_by_name(d[key])
+        input_element = driver.find_element("name",d[key])
         input_value = input_element.get_attribute("value")
         result[key] = input_value
-    a_element = driver.find_element_by_xpath(
-        "//a[span[text()='Parent Details']]")
+    #a_element = driver.find_element_by_xpath(
+     #   "//a[span[text()='Parent Details']]")
+    a_element = driver.find_element("xpath","//a[span[text()='Parent Details']]")
     a_element.click()
     time.sleep(3)
     for key in page3_keys:
-        input_element = driver.find_element_by_name(d[key])
+        #input_element = driver.find_element_by_name(d[key])
+        input_element = driver.find_element("name",d[key])
         input_value = input_element.get_attribute("value")
         result[key] = input_value
     academics_url = 'https://slcm.manipal.edu/Academics.aspx'
     driver.get(academics_url)
     time.sleep(4)
-    a_element = driver.find_element_by_xpath(
-        "//a[span[text()='Enrollment Details']]")
+    #a_element = driver.find_element_by_xpath(
+     #   "//a[span[text()='Enrollment Details']]")
+    a_element = driver.find_element("xpath","//a[span[text()='Enrollment Details']]")
     a_element.click()
     time.sleep(3)
     for key in page4_keys:
-        span_element = driver.find_element_by_id(d[key])
+        #span_element = driver.find_element_by_id(d[key])
+        span_element = driver.find_element("id",d[key])
         span_text = span_element.text
         result[key] = span_text
     result['address'] = '\n' + result['address_1'] + '\n' + result['address_2'] + '\n' + result['address_3'] + '\n' + \
@@ -195,13 +202,15 @@ def findDataForStudent(driver, regNo):
     print("Getting Data for " + regNo)
     # Clicking on 'Student Search'
 
-    a_element = driver.find_element_by_xpath(
-        "//a[span[text()='Student Search']]")
+    #a_element = driver.find_element_by_xpath(
+     #   "//a[span[text()='Student Search']]")
+    a_element = driver.find_element("xpath",  "//a[span[text()='Student Search']]")
     a_element.click()
 
     # Entering reg_no in input
-    input_element = driver.find_element_by_name(
-        'ctl00$ContentPlaceHolder1$txtEnrollmentNo')
+    #input_element = driver.find_element_by_name(
+     #   'ctl00$ContentPlaceHolder1$txtEnrollmentNo')
+    input_element = driver.find_element("name",'ctl00$ContentPlaceHolder1$txtEnrollmentNo')
     input_element.clear()
     input_element.send_keys(regNo)
     ignored_exceptions=(NoSuchElementException,StaleElementReferenceException,)
